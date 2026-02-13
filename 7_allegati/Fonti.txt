@@ -1,0 +1,6 @@
+https://opensearch.org/
+https://typesense.org/
+https://www.meilisearch.com/
+https://www.meilisearch.com/docs/learn/resources/known_limitations
+https://mermaid.ai/
+https://www.figma.com/

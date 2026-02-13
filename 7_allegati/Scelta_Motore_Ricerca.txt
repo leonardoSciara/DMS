@@ -1,0 +1,1 @@
+Come motore di ricerca ho scelto Meilisearch perché è ottimizzato per ricerca full-text veloce, è facile da installare e da usare, ed è molto ricercato per siti web.

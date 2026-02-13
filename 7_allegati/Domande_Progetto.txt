@@ -1,0 +1,33 @@
+Chi sono esattamente gli utenti?
+utenti e admin
+
+Esiste un limite di dimensione per i file caricati?
+in base a meilisearch, il sito usa le api di meilisearch per la ricerca
+
+Limite massimo di file?
+Non c'è perché in locale
+
+Quali formati di file devono essere supportati?
+(PDF, DOCX, ODT)
+
+Dove vengono archiviati i file?
+locale
+
+Chi decide se un documento è privato?
+tutti gli utenti che possono aggiungere file
+
+L'admin che compito ha?
+gestione utenti, gestione file privati e pubblici, tag nei file
+
+Deve essere possibile visualizzare le vecchie versioni?
+Si, se il file aggiunto ha lo stesso nome di uno che è già presente nella lista,
+fa un controllo automatico per vedere se il contenuto è diverso,
+se uguale ti avvisa e ti chiede se vuoi sostituirlo,
+se diverso ti chiede se vuoi creare una nuova versione oppure se vuoi sostituirlo
+
+Esiste un limite al numero di versioni mantenute?
+no
+
+
+
+
