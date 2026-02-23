@@ -6,36 +6,32 @@
     <title>Register - DMS</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen flex items-center justify-center">
-    <div class="w-full max-w-md">
-        <!-- Logo/Header -->
-        <div class="text-center mb-8">
-            <div class="inline-block bg-gradient-to-r from-blue-500 to-purple-600 p-3 rounded-lg mb-4">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-sm">
+        <div class="bg-white rounded-2xl shadow-lg p-8">
+            <div class="flex flex-col items-center gap-4 mb-4">
+                <div class="bg-gray-100 rounded-full p-4">
+                    <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 8h10M7 12h10M7 16h6" />
+                    </svg>
+                </div>
+                <h1 class="text-2xl font-bold text-gray-800">DMS - Document Management</h1>
+                <p class="text-gray-500 text-sm">Crea il tuo account per accedere al sistema</p>
             </div>
-            <h1 class="text-3xl font-bold text-white">DMS</h1>
-            <p class="text-slate-400 text-sm mt-1">Document Management System</p>
-        </div>
-
-        <!-- Register Card -->
-        <div class="bg-slate-800 rounded-xl shadow-2xl p-8 border border-slate-700">
-            <h2 class="text-2xl font-bold text-white mb-6">Create Account</h2>
 
             @if ($errors->any())
-                <div class="bg-red-500/10 border border-red-500/50 text-red-200 px-4 py-3 rounded-lg mb-6">
+                <div class="mb-4 text-sm text-red-600">
                     @foreach ($errors->all() as $error)
-                        <p class="text-sm">{{ $error }}</p>
+                        <div>{{ $error }}</div>
                     @endforeach
                 </div>
             @endif
 
-            <form method="POST" action="{{ url('/register') }}" class="space-y-5">
+            <form method="POST" action="{{ url('/register') }}" class="space-y-4">
                 @csrf
 
                 <div>
-                    <label for="name" class="block text-sm font-medium text-slate-300 mb-2">Full Name</label>
+                    <label for="name" class="sr-only">Nome</label>
                     <input
                         type="text"
                         id="name"
@@ -43,74 +39,69 @@
                         value="{{ old('name') }}"
                         required
                         autofocus
-                        placeholder="Enter your full name"
-                        class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                        placeholder="Inserisci il nome"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
                     />
                 </div>
 
                 <div>
-                    <label for="email" class="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                    <label for="email" class="sr-only">Email</label>
                     <input
                         type="email"
                         id="email"
                         name="email"
                         value="{{ old('email') }}"
                         required
-                        placeholder="Enter your email"
-                        class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                        placeholder="Inserisci l'email"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
                     />
                 </div>
 
                 <div>
-                    <label for="username" class="block text-sm font-medium text-slate-300 mb-2">Username</label>
+                    <label for="username" class="sr-only">Username</label>
                     <input
                         type="text"
                         id="username"
                         name="username"
                         value="{{ old('username') }}"
                         required
-                        placeholder="Enter your username"
-                        class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                        placeholder="Inserisci username"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
                     />
                 </div>
 
                 <div>
-                    <label for="password" class="block text-sm font-medium text-slate-300 mb-2">Password</label>
+                    <label for="password" class="sr-only">Password</label>
                     <input
                         type="password"
                         id="password"
                         name="password"
                         required
-                        placeholder="Enter your password (min 8 characters)"
-                        class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                        placeholder="Inserisci password (min 8 caratteri)"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
                     />
                 </div>
 
                 <div>
-                    <label for="password_confirmation" class="block text-sm font-medium text-slate-300 mb-2">Confirm Password</label>
+                    <label for="password_confirmation" class="sr-only">Conferma Password</label>
                     <input
                         type="password"
                         id="password_confirmation"
                         name="password_confirmation"
                         required
-                        placeholder="Confirm your password"
-                        class="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                        placeholder="Conferma password"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-md text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300"
                     />
                 </div>
 
                 <button
                     type="submit"
-                    class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-2.5 px-4 rounded-lg transition duration-200 transform hover:scale-105"
+                    class="w-full bg-gray-900 text-white font-semibold py-3 rounded-md shadow-sm hover:opacity-95"
                 >
-                    Create Account
+                    Crea account
                 </button>
             </form>
         </div>
-
-        <!-- Login Link -->
-        <p class="text-center text-slate-400 text-sm mt-6">
-            Already have an account? <a href="{{ url('/login') }}" class="text-blue-400 hover:text-blue-300 font-semibold">Sign In</a>
-        </p>
     </div>
 </body>
 </html>

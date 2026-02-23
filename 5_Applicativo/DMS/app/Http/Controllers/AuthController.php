@@ -9,17 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    /**
-     * Show login page
-     */
     public function showLogin()
     {
         return view('auth.login');
     }
 
-    /**
-     * Handle login request
-     */
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -37,17 +31,11 @@ class AuthController extends Controller
         ])->onlyInput('username');
     }
 
-    /**
-     * Show registration page
-     */
     public function showRegister()
     {
         return view('auth.register');
     }
 
-    /**
-     * Handle registration request
-     */
     public function register(Request $request)
     {
         $validated = $request->validate([
@@ -57,25 +45,20 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        // Create user with default role
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'username' => $validated['username'],
             'password' => Hash::make($validated['password']),
-            'role' => 'user', // Default role
+            'role' => 'user',
         ]);
 
-        // Log the user in
         Auth::login($user);
         $request->session()->regenerate();
 
         return redirect('/dashboard')->with('success', 'Account created successfully');
     }
 
-    /**
-     * Handle logout
-     */
     public function logout(Request $request)
     {
         Auth::logout();

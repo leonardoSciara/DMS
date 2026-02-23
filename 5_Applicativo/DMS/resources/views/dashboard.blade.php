@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen">
-    <!-- Navbar -->
     <nav class="bg-slate-800/50 backdrop-blur-md border-b border-slate-700 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-2">
@@ -19,45 +18,69 @@
                 <span class="text-xl font-bold text-white">DMS</span>
             </div>
             <div class="flex items-center gap-6">
-                <div class="text-right">
-                    <p class="text-slate-300 font-medium">{{ Auth::user()->name }}</p>
-                    <p class="text-slate-500 text-xs uppercase tracking-wider">@if (Auth::user()->role === 'admin') Administrator @else User @endif</p>
-                </div>
-                <form method="POST" action="{{ route('logout') }}" class="inline">
-                    @csrf
-                    <button type="submit" class="bg-red-600/20 hover:bg-red-600/30 text-red-400 font-semibold py-2 px-4 rounded-lg border border-red-500/30 transition">
-                        Logout
-                    </button>
-                </form>
-            </div>
-        </div>
-    </nav>
+                <!DOCTYPE html>
+                <html lang="it">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Dashboard - DMS</title>
+                    <script src="https://cdn.tailwindcss.com"></script>
+                </head>
+                <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+                    <div class="w-full max-w-4xl p-6">
+                        <div class="bg-white rounded-2xl shadow-lg p-6">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center gap-4">
+                                    <div class="bg-gray-100 p-3 rounded-lg">
+                                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h1 class="text-xl font-semibold text-gray-800">DMS</h1>
+                                        <p class="text-sm text-gray-500">Sistema di gestione documentale</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="text-right">
+                                        <p class="text-gray-800 font-medium">{{ Auth::user()->name }}</p>
+                                        <p class="text-xs text-gray-500 uppercase">@if (Auth::user()->role === 'admin') Amministratore @else Utente @endif</p>
+                                    </div>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm">Logout</button>
+                                    </form>
+                                </div>
+                            </div>
 
-    <!-- Main Content -->
-    <div class="min-h-screen flex items-center justify-center py-12 px-6">
-        <div class="text-center">
-            @if (Auth::user()->role === 'admin')
-                <div class="mb-8">
-                    <div class="inline-block bg-gradient-to-r from-purple-500 to-pink-600 p-4 rounded-full mb-6">
-                        <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M10.5 1.5H5.75A2.25 2.25 0 003.5 3.75v12.5A2.25 2.25 0 005.75 18.5h8.5a2.25 2.25 0 002.25-2.25V6.5m-11-5v4m5-4v4m-5 9.5h10"></path>
-                        </svg>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                                <div class="p-4 bg-gray-50 rounded-md">
+                                    <div class="text-sm text-gray-500">Documenti accessibili</div>
+                                    <div class="text-2xl font-bold text-gray-800">--</div>
+                                </div>
+                                <div class="p-4 bg-gray-50 rounded-md">
+                                    <div class="text-sm text-gray-500">Pubblici</div>
+                                    <div class="text-2xl font-bold text-gray-800">--</div>
+                                </div>
+                                <div class="p-4 bg-gray-50 rounded-md">
+                                    <div class="text-sm text-gray-500">Privati</div>
+                                    <div class="text-2xl font-bold text-gray-800">--</div>
+                                </div>
+                            </div>
+
+                            <div class="bg-gray-50 p-4 rounded-md">
+                                @if (Auth::user()->role === 'admin')
+                                    <h2 class="text-lg font-semibold text-gray-800 mb-2">Pannello amministrazione</h2>
+                                    <div class="flex gap-2">
+                                        <a href="{{ route('admin.users.index') }}" class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm">Gestione utenti</a>
+                                        <a href="#" class="bg-white border border-gray-200 px-3 py-2 rounded-md text-sm text-gray-700">Gestione tag</a>
+                                    </div>
+                                @else
+                                    <h2 class="text-lg font-semibold text-gray-800">Benvenuto</h2>
+                                    <p class="text-sm text-gray-600">Usa la barra di ricerca per trovare documenti o caricane di nuovi.</p>
+                                @endif
+                            </div>
+                        </div>
                     </div>
-                    <h1 class="text-5xl font-bold text-white mb-3">Questo è l'admin</h1>
-                    <p class="text-slate-400 text-lg">Hai accesso completo al sistema</p>
-                </div>
-            @else
-                <div class="mb-8">
-                    <div class="inline-block bg-gradient-to-r from-blue-500 to-cyan-600 p-4 rounded-full mb-6">
-                        <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                        </svg>
-                    </div>
-                    <h1 class="text-5xl font-bold text-white mb-3">Questo è lo user</h1>
-                    <p class="text-slate-400 text-lg">Hai accesso alle funzioni base del sistema</p>
-                </div>
-            @endif
-        </div>
-    </div>
-</body>
-</html>
+                </body>
+                </html>
